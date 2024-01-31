@@ -1,28 +1,27 @@
-import { ActionIcon, Button, Card, Container, Grid } from '@mantine/core';
-import {IconBackspace} from '@tabler/icons-react';
+import { DarkModeToggle } from '@/components/DarkModeToggle';
+import { SimpleCalculator } from '@/components/SimpleCalculator';
+import { useStore } from '@/store';
+import { ActionIcon, Button, Card, Container, Grid, Group, Paper, Stack, Text } from '@mantine/core';
+import { IconBackspace, IconMoonFilled } from '@tabler/icons-react';
 
 export function HomePage() {
+  const { equation } = useStore();
   return (
     <Container size="xs" mt="lg">
-      <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Card.Section />
-          <Grid>
-            <Grid.Col span={3}>
-              <Button>%</Button>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <Button>CE</Button>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <Button>C</Button>
-            </Grid.Col>
-            <Grid.Col span={3}>
-              <ActionIcon variant="filled">
-                <IconBackspace />
-              </ActionIcon>
-            </Grid.Col>
-          </Grid>
-      </Card>
+      <Stack>
+        <Group>
+          <DarkModeToggle />
+        </Group>
+        <Card shadow="sm" padding="lg" radius="md" withBorder>
+
+          <Card.Section m="xs">
+            <Paper shadow="lg" radius="xl" p="xs" pl="lg" pr="lg" withBorder>
+              <Text>{equation}</Text>
+            </Paper>
+          </Card.Section>
+          <SimpleCalculator />
+        </Card>
+      </Stack>
     </Container>
   );
 }
