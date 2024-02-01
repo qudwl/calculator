@@ -9,16 +9,16 @@ export function HomePage() {
   return (
     <Container size="xs" mt="lg">
       <Stack>
-        <Group>
-          <DarkModeToggle />
-        </Group>
         <Card shadow="sm" padding="lg" radius="md" withBorder>
-
+          <Group>
+            <DarkModeToggle />
+          </Group>
           <Card.Section m="xs">
             <Paper shadow="lg" radius="xl" p="xs" pl="lg" pr="lg" withBorder>
               <Text>{equation}</Text>
             </Paper>
           </Card.Section>
+
           <SimpleCalculator />
         </Card>
       </Stack>

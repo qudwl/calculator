@@ -1,40 +1,37 @@
 import { useStore } from "@/store";
 import { Button, Grid } from "@mantine/core";
-import { IconBackspace, IconDivide, IconEqual, IconMinus, IconPlus, IconPlusMinus, IconSquareRoot2, IconSuperscript, IconX } from "@tabler/icons-react";
+import { IconBackspace, IconDivide, IconEqual, IconMinus, IconParentheses, IconPlus, IconSquareRoot2, IconSuperscript, IconX } from "@tabler/icons-react";
 
 export const SimpleCalculator = () => {
-    const { addNum, deleteLast } = useStore();
+    const { addNum, deleteLast, addOperator, addPower, solve, clear, makeDenom } = useStore();
     return (
         <Grid mt="lg">
             <Grid.Col span={3}>
-                <Button fullWidth>%</Button>
+                <Button onClick={() => addOperator('%')} fullWidth>%</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>CE</Button>
+                <Button onClick={clear} fullWidth>CE</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>C</Button>
+                <Button onClick={clear} fullWidth>C</Button>
             </Grid.Col>
             <Grid.Col span={3}>
                 <Button onClick={deleteLast} fullWidth>
                     <IconBackspace />
                 </Button>
             </Grid.Col>
-            <Grid.Col span={3}>
-                <Button fullWidth>1 / x</Button>
-            </Grid.Col>
-            <Grid.Col span={3}>
-                <Button fullWidth>
+            <Grid.Col span={4}>
+                <Button onClick={() => addPower(2)} fullWidth aria-label="Square">
                     <IconSuperscript />
                 </Button>
             </Grid.Col>
-            <Grid.Col span={3}>
-                <Button fullWidth>
+            <Grid.Col span={4}>
+                <Button onClick={() => addPower(0.5)} fullWidth aria-label="Square Root">
                     <IconSquareRoot2 />
                 </Button>
             </Grid.Col>
-            <Grid.Col span={3}>
-                <Button fullWidth>
+            <Grid.Col span={4}>
+                <Button onClick={() => addOperator('/')} fullWidth aria-label="divide">
                     <IconDivide />
                 </Button>
             </Grid.Col>
@@ -48,7 +45,7 @@ export const SimpleCalculator = () => {
                 <Button onClick={() => addNum(9)} fullWidth>9</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>
+                <Button onClick={() => addOperator('*')} fullWidth aria-label="multiply">
                     <IconX />
                 </Button>
             </Grid.Col>
@@ -62,7 +59,7 @@ export const SimpleCalculator = () => {
                 <Button onClick={() => addNum(6)} fullWidth>6</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>
+                <Button onClick={() => addOperator('-')} fullWidth>
                     <IconMinus />
                 </Button>
             </Grid.Col>
@@ -76,23 +73,18 @@ export const SimpleCalculator = () => {
                 <Button onClick={() => addNum(3)} fullWidth>3</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>
+                <Button onClick={() => addOperator("+")} fullWidth>
                     <IconPlus />
                 </Button>
             </Grid.Col>
-            <Grid.Col span={3}>
-                <Button fullWidth>
-                    <IconPlusMinus />
-                </Button>
-            </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={6}>
                 <Button onClick={() => addNum(0)} fullWidth>0</Button>
             </Grid.Col>
             <Grid.Col span={3}>
                 <Button fullWidth>.</Button>
             </Grid.Col>
             <Grid.Col span={3}>
-                <Button fullWidth>
+                <Button onClick={solve} fullWidth>
                     <IconEqual />
                 </Button>
             </Grid.Col>
